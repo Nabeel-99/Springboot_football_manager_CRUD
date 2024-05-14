@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{index}">
+<head>
+    <meta charset="UTF-8">
+    <title>Team List</title>
+    <link rel="stylesheet" href="/custom.css">
+</head>
+<body>
+<div th:replace="~{layouts/navbar}"></div>
+<div class="flex flex-col items-center w-full h-screen bg-gradient-to-b from-blue-900 via-[#0D0C57] to-blue-950">
+    <div class="flex justify-between w-4/5 pt-12 py-1">
+        <h2 class="text-3xl text-white">Team List</h2>
+        <a href="/teams/form" class="border px-4 py-1 rounded-md bg-slate-800 text-white hover:bg-slate-600">Add Team</a>
+    </div>
+    <table class="table-fixed rounded-t-md    border w-4/5">
+        <thead class="bg-slate-800 rounded-t-md text-white">
+        <tr>
+            <th class="border rounded-tl-md py-2">ID</th>
+            <th class="border px-4 py-2 text-left">Name</th>
+            <th class="border px-4 py-2 text-left">City</th>
+            <th class="border rounded-tr-md  py-2">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="team : ${teams}" class="bg-white">
+            <td class="border px-4 py-2 text-center" th:text="${team.id}"></td>
+            <td class="border px-4 py-2" th:text="${team.name}"></td>
+            <td class="border px-4 py-2" th:text="${team.city}"></td>
+            <td class="border px-4 py-2 text-center">
+                <a class="text-blue-600 hover:text-blue-900" th:href="@{/teams/edit/{id}(id=${team.id})}">Edit</a>
+                <a class="text-red-600 hover:text-red-900 ml-2" th:href="@{/teams/delete/{id}(id=${team.id})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

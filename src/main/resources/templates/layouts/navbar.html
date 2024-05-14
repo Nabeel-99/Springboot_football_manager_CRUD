@@ -1,0 +1,22 @@
+
+<div class="flex bg-slate-900 text-white justify-center items-center">
+    <nav class="flex justify-between items-center container w-full py-4 mx-auto text-white">
+        <a href="/index" class="">
+            <img src="/images/logo.png" alt="logo" class="w-16 h-9 "/>
+        </a>
+        <div class="flex gap-4">
+            <ul class="flex gap-4">
+                <li><a href="/index" class="hover:text-gray-300">Home</a></li>
+                <li><a href="/players/list" class="hover:text-gray-300">Players</a></li>
+                <li><a href="/teams/list" class="hover:text-gray-300">Teams</a></li>
+<!--                <li><a href="/players/list" class="hover:text-gray-300">Leagues</a></li>-->
+<!--                <li><a href="/players/list" class="hover:text-gray-300">Stadiums</a></li>-->
+<!--                <li><a href="/players/list" class="hover:text-gray-300">Kits</a></li>-->
+            </ul>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="px-4  bg-red-700 hover:bg-red-600 rounded-md">Logout</button>
+            </form>
+        </div>
+
+    </nav>
+</div>

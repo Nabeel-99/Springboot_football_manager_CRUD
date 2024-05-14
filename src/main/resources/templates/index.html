@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Football Manager</title>
+    <link rel="stylesheet" href="custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Preahvihear&display=swap" rel="stylesheet">
+
+</head>
+
+<style>
+    .preahvihear-regular {
+        font-family: "Preahvihear", sans-serif;
+        font-weight: 400;
+        font-style: italic;
+    }
+    .reveal-animation{
+        opacity: 0;
+        transition: all 1s ease-in-out;
+    }
+    #neymar{
+        transform: translateY(-50%);
+    }
+    #neymar.active{
+        transform: translateX(0);
+        transition-delay: 0.6s;
+    }
+    .active{
+        opacity: 1;
+    }
+    #mbappe{
+        transform: scale(.5);
+    }
+    #mbappe.active{
+        transition-delay: 0.2s;
+        transform: scale(1);
+    }
+    #vini{
+        transform: translateY(50%);
+    }
+    #vini.active{
+        transition-delay: 0.4s;
+        transform: translateY(0);
+    }
+    #one{
+        transform: translateX(-20%);
+    }
+    #one.active{
+        transform: translateX(0);
+        transition-delay: 0s;
+    }
+    #two{
+        transform: translateX(-30%);
+    }
+    #two.active{
+        transition-delay: 0.8s;
+        transform: translateX(0);
+    }
+    #three{
+        transform: translateX(-40%);
+    }
+    #three.active{
+        transition-delay: 1.6s;
+        transform: translateX(0);
+    }
+    #four{
+        transform: translateX(-50%);
+    }
+    #four.active{
+        transition-delay: 2.4s;
+        transform: translateX(0);
+    }
+
+</style>
+<body>
+
+<div th:replace="~{layouts/navbar}"></div>
+    <div  class="relative flex flex-col py-8 justify-around text-white  gap-4 h-screen  w-full bg-gradient-to-r from-[#270278] via-[#0D0C57] to-[#0D0C57]">
+        <div id="neymar" class="absolute top-16 right-32 reveal-animation">
+            <img src="/images/neymar.png" alt="player" class="h-[34rem] -z-10"/>
+        </div>
+        <div id="mbappe" class="absolute top-12 left-2  reveal-animation">
+            <img src="/images/airmbappe.png" alt="player" class="h-[30rem] -z-10"/>
+        </div>
+        <div id="vini" class="absolute top-14 right-[21rem]  reveal-animation">
+            <img src="/images/vini.png" alt="player" class="h-[44rem] -z-10"/>
+        </div>
+        <h2 class="text-4xl leading-tight mt-10 preahvihear-regular italic pl-20 z-20">Football Manager</h2>
+       <div class="flex items-center justify-between ml-20  h-full">
+          <div class=" flex flex-col gap-2 justify-center z-20">
+              <h2 class="reveal-animation font-sans font-bold text-[#fffff] border border-[#0d0c57] bg-gradient-to-r from-[#0D0C57] via-purple-950 to-[#270278] px-3 rounded-full p-1 text-2xl">Manage your own football team like a pro!</h2>
+              <ul class="list-disc">
+                  <li id="one" class="font-bold reveal-animation">Create and manage your dream team effortlessly</li>
+                  <li id="two" class="font-bold reveal-animation ">Detailed Player profiles</li>
+                  <li id="three" class="font-bold reveal-animation">Explore Stadiums</li>
+                  <li id="four" class="font-bold reveal-animation">Customize Team kits</li>
+              </ul>
+              <div class="flex gap-2">
+                  <a  href="/players/list" class="rounded-2xl bg-yellow-300 text-black hover:bg-yellow-200  border px-2 py-1  ">Players</a>
+                  <a  href="/teams/list" class="rounded-2xl bg-yellow-300 text-black hover:bg-yellow-200 border px-2 py-1">Teams</a>
+                  <a  href="" class="rounded-2xl bg-yellow-300 text-black hover:bg-yellow-200 border px-2 py-1">Leagues</a>
+                  <a  href="" class="rounded-2xl bg-yellow-300 text-black hover:bg-yellow-200 border px-2 py-1">Kits</a>
+                  <a  href="" class="rounded-2xl bg-yellow-300 text-black hover:bg-yellow-200 border px-2 py-1">Stadiums</a>
+              </div>
+          </div>
+           <div class="flex gap-8 items-center w-[52rem] pr-10 justify-center z-20">
+                   <img src="/images/group.png" alt="group">
+           </div>
+       </div>
+
+    </div>
+<script>
+    const animatedObjects = document.querySelectorAll('.reveal-animation')
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if(entry.isIntersecting){
+                entry.target.classList.add('active')
+            }
+        })
+    }, {
+        threshold: 0.2
+    })
+
+    for(let i = 0; i <animatedObjects.length; i++){
+        const elements = animatedObjects[i]
+        observer.observe(elements)
+    }
+
+</script>
+</body>
+</html>

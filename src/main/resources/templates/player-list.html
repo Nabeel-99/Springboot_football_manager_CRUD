@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{index}">
+<head>
+    <meta charset="UTF-8">
+    <title>Player List</title>
+    <link rel="stylesheet" href="/custom.css">
+</head>
+<body>
+<div th:replace="~{layouts/navbar}"></div>
+    <div class="relative flex flex-col items-center w-full h-screen bg-gradient-to-br from-[#0D0C57] via-blue-900 to-blue-950">
+        <div class="absolute top-[25rem] left-20 ">
+            <img src="/images/easfc-24-club.png" alt="list" class="-z-10 object-cover h-[22rem]"/>
+        </div>
+        <div class="absolute top-[29rem] left-[52rem] ">
+            <img src="/images/FIFA-23%20copy.png" alt="list" class="-z-10 object-cover h-[15rem]"/>
+        </div>
+        <div class="flex justify-between w-4/5 pt-12 py-1 z-20">
+            <h2 class="text-3xl text-white">Player List</h2>
+            <a href="/players/form" class="border px-4 py-1 rounded-md bg-slate-800 text-white hover:bg-slate-600">Add Player</a>
+        </div>
+        <table class="table-fixed rounded-t-md z-20 bg-gradient-to-r bg-white text-black w-4/5">
+            <thead class="bg-blue-700 rounded-t-md text-white">
+            <tr>
+                <th class="border rounded-tl-md py-2">ID</th>
+                <th class="border py-2">First Name</th>
+                <th class="border py-2">Last Name</th>
+                <th class="border py-2">Position</th>
+                <th class="border py-2">Club</th>
+                <th class="border py-2">Shirt Number</th>
+                <th class="border rounded-tr-md  py-2">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="player : ${players}" class="bg-white">
+                <td class="border px-4 py-2 text-center" th:text="${player.id}"></td>
+                <td class="border px-4 py-2" th:text="${player.firstName}"></td>
+                <td class="border px-4 py-2" th:text="${player.lastName}"></td>
+                <td class="border px-4 py-2" th:text="${player.position}"></td>
+                <td class="border px-4 py-2" th:text="${player.club}"></td>
+                <td class="border px-4 py-2 text-center" th:text="${player.shirtNumber}"></td>
+                <td class="border px-4 py-2 text-center">
+                    <a class="text-blue-600 hover:text-blue-900" th:href="@{/players/edit/{id}(id=${player.id})}">Edit</a>
+                    <a class="text-red-600 hover:text-red-900 ml-2" th:href="@{/players/delete/{id}(id=${player.id})}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

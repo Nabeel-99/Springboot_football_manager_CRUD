@@ -1,6 +1,6 @@
 -- league table
-INSERT INTO league (id, name, country, season)
-VALUES (3001, 'Ligue 1', 'France', '2023/2024');
+INSERT INTO league (id, name, created, updated, country, season)
+VALUES (3001, 'Ligue 1', now(), now(), 'France', '2023/2024');
 
 INSERT INTO league (id, name, country, season)
 VALUES (3002, 'Premier League', 'England', '2023/2024');

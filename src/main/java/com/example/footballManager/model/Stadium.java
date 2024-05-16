@@ -2,6 +2,7 @@ package com.example.footballManager.model;
 
 import com.example.footballManager.model.AbstractEntity;
 import com.example.footballManager.model.Team;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import java.util.Set;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = "teams")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -40,6 +41,7 @@ public class Stadium extends AbstractEntity<Long> {
     // Relationships
 
     // One-to-Many relationship with Team
+    @JsonIgnore
     @OneToMany(mappedBy = "stadium", cascade = CascadeType.ALL)
     private Set<Team> teams;
 }

@@ -1,6 +1,7 @@
 package com.example.footballManager.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -12,7 +13,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.Set;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"players", "league", "stadium", "kit"})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,20 +33,24 @@ public class Team extends AbstractEntity<Long>{
     @NotNull(message = "Field is required")
     private String city;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private Set<Player> players;
 
     // Many-to-One relationship with League
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "league_id")
     private League league;
 
     // Many-to-One relationship with Stadium
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stadium_id")
     private Stadium stadium;
 
     // One-to-One relationship with Kit
+    @JsonIgnore
     @OneToOne(mappedBy = "team", cascade = CascadeType.ALL)
     private Kit kit;
 

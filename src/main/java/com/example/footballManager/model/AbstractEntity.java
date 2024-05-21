@@ -1,5 +1,6 @@
 package com.example.footballManager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,9 +23,11 @@ public class AbstractEntity<ID extends Serializable> implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
     private ID id;
 
+    @JsonIgnore
     @CreationTimestamp
     private LocalDateTime created;
 
+    @JsonIgnore
     @UpdateTimestamp
     private LocalDateTime updated;
 }

@@ -1,5 +1,6 @@
 package com.example.footballManager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -8,7 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = "team")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,6 +35,7 @@ public class Kit extends AbstractEntity<Long> {
     // Relationships
 
     // One-to-One relationship with Team
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id", unique = true)
     private Team team;
